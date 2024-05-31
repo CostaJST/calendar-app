@@ -1,0 +1,42 @@
+event 2023-10-01 10:00:00 2 "PR Team Meeting"
+event 2023-10-03 all-day "Company Annual Event"
+event 2023-10-11 09:30:00 1 "Engineering Team Meeting"
+event 2023-10-15 16:00:00 3 "Musical Event"
+event 2023-10-22 all-day "Assignment Submission"
+event 2023-10-25 18:00:00 4 "Birthday Celebration Gathering"
+event 2023-10-26 all-day "Off-day"
+event 2023-10-30 08:30:00 2 "Church Event"
+event 2023-11-05 15:00:00 2 "Exam"
+event 2023-11-09 16:30:00 2 "Swimming Practices"
+event 2023-11-12 09:30:00 1 "Interview Session"
+event 2023-11-15 15:30:00 3 "Music Practical Classes"
+
+plugin edu.curtin.calPlugins.Repeat {
+    title: "Daily Scrum Meeting",
+    startDate: "2023-10-01",
+    startTime: "08:30:00",
+    duration: "1"
+
+}
+
+script "
+
+    from datetime import date
+
+    def holiday(CalenderApp, startDate, title):
+        event = CalenderApp.createEvent(title)
+        event.setAllDay(True);
+        event.setDate(date.fromisoformat(startDate))
+        event.save()
+
+    CalenderApp = CalenderApp("My Calender")
+
+    hoiday(CalenderApp, "2023-02-04", "Independence Day")
+    hoiday(CalenderApp, "2023-12-25", "Christmas Day")
+    hoiday(CalenderApp, "2023-01-01", "New Year's Eve")
+    hoiday(CalenderApp, "2023-04-07", "Good Friday")
+    hoiday(CalenderApp, "2023-04-14", "Sinhalese New Year's Eve")
+
+    print("Holidays and notable dates added to the calender)
+"
+
